@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomePay", "HomePay\HomePay.csproj", "{D4D300D9-7125-4AD9-AAFD-BA1454BE3076}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomePay.Models", "HomePay.Models\HomePay.Models.csproj", "{B3C6E14D-C74D-445C-9F3F-7938CBFDE164}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D4D300D9-7125-4AD9-AAFD-BA1454BE3076}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4D300D9-7125-4AD9-AAFD-BA1454BE3076}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4D300D9-7125-4AD9-AAFD-BA1454BE3076}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4D300D9-7125-4AD9-AAFD-BA1454BE3076}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3C6E14D-C74D-445C-9F3F-7938CBFDE164}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3C6E14D-C74D-445C-9F3F-7938CBFDE164}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3C6E14D-C74D-445C-9F3F-7938CBFDE164}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3C6E14D-C74D-445C-9F3F-7938CBFDE164}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

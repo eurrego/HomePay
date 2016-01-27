@@ -1,0 +1,235 @@
+﻿<UserControl x:Class="HomePay.Views.ViewsIngresos.NewIngreso"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             
+             xmlns:local="clr-namespace:HomePay.Views.ViewsIngresos"
+             xmlns:materialDesign="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:ViewModels ="clr-namespace:HomePay.ViewModels"
+             
+             mc:Ignorable="d" 
+             d:DesignHeight="260"
+             d:DesignWidth="425"
+             Background="White">
+    <Grid Margin="0 6 0 0" VerticalAlignment="Top" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="45"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="280"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Button Grid.Row="0" Grid.Column="1" 
+                        Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                        Margin="0 5 0 0"
+                        ToolTip="Fecha">
+            <Viewbox Width="20" Height="20">
+                <Canvas Width="24" Height="24" >
+                    <Path Data="M6.625,21.515017L25.375,21.515017 25.375,23.515017 6.625,23.515017z M6.625,
+                              12.159997L25.375,12.159997 25.375,14.159997 6.625,14.159997z M2,5.7400045L2,
+                              29.000006 30,29.000006 30,5.7400045 25,5.7400045 25,8 23,8 23,5.7400045 9,
+                              5.7400045 9,8 7,8 7,5.7400045z M7,0L9,0 9,3.7400055 23,3.7400055 23,0 25,
+                              0 25,3.7400055 32,3.7400055 32,31.000006 0,31.000006 0,3.7400055 7,3.7400055z" 
+					          Fill="{Binding ElementName=dtdFecha, Path=BorderBrush}" 
+                              Height="24" Stretch="Fill" Width="24"
+                              />
+                </Canvas>
+            </Viewbox>
+        </Button>
+
+        <DatePicker x:Name="dtdFecha" Grid.Row="0" Grid.Column="2"
+                            materialDesign:TextFieldAssist.Hint="Fecha"
+                            SelectedDateFormat="Long"
+                            Margin="10 15 0 0"
+                            FontSize="18"
+                            >
+            <DatePicker.SelectedDate>
+                <Binding Path="Fecha" UpdateSourceTrigger="PropertyChanged"
+                                 ValidatesOnDataErrors="True">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </DatePicker.SelectedDate>
+        </DatePicker>
+
+        <Button Grid.Row="1" Grid.Column="1"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                        Margin="0 20 0 0">
+            <Viewbox Width="20" Height="20">
+                <Canvas Width="24" Height="24" >
+                    <Path Data="M15.642869,1.9992427C15.6335,1.9992428 15.624497,1.9994946 15.614976,1.9999981
+                                  13.508044,1.9999981 11.853017,2.8380101 10.690054,4.4930072 9.9460364,5.5509896 
+                                  9.55297,6.883996 9.55297,8.3479843L9.55297,13.094989C9.55297,13.982012 10.384024,
+                                  15.045976 11.117056,15.985001 11.375966,16.318007 11.628041,16.641006 11.846059,
+                                  16.95198 12.11498,17.337966 12.325062,17.685988 12.489979,17.98799 13.270007,
+                                  19.418958 13.233997,22.310006 12.082997,23.644967 11.608998,24.193976 10.992056,
+                                  24.638007 10.247061,24.965949 9.5500403,25.272956 8.744011,25.443 7.8530202,
+                                  25.474006 2.8730443,25.641974 2.1790753,26.21198 1.9970683,26.892949L1.9990215,
+                                  29.983951 13.765979,29.998965 28.99802,29.983951 28.99802,26.888982C28.749973,
+                                  26.060002,27.556982,25.587958,22.526957,25.454963L22.301983,25.435004C21.666973,
+                                  25.379951 19.978987,25.235969 18.816999,23.659005 18.104963,22.693978 17.432968,
+                                  19.798963 18.739973,17.936965L19.415999,16.980971C19.612043,16.70198 19.831038,
+                                  16.414016 20.056013,16.116958 20.839947,15.081986 21.728985,13.907976 21.728985,
+                                  12.909991L21.728985,8.487999C21.728985,6.8200006 21.207989,5.266993 20.259991,
+                                  4.1149864 19.10301,2.712003 17.56102,1.9999981 15.672959,1.9999981 15.661973,
+                                  1.9994946 15.652238,1.9992428 15.642869,1.9992427z M15.608018,0L15.679063,0C18.150984,
+                                  0 20.270977,0.98300076 21.804058,2.8439918 23.046,4.3529925 23.728983,6.3579955
+                                  23.728983,8.487999L23.728983,12.909991C23.728983,14.579972 22.624979,16.039016 
+                                  21.649029,17.324965 21.438946,17.602004 21.234966,17.870986 21.052959,
+                                  18.130994L20.378033,19.086011C19.700056,20.049998 20.066023,21.982982 20.427959,
+                                  22.471993 21.052959,23.320992 21.977032,23.399972 22.473002,23.441964 22.530008,
+                                  23.446969 22.58201,23.451974 22.625956,23.456979 27.973974,23.599984 30.450047,
+                                  24.086005 30.977022,26.557988L31.004,26.686955 30.997042,26.842961 30.998018,
+                                  31.981996 14.047961,31.999999 13.765979,31.998963 13.405994,31.999999 13.405994,
+                                  31.998963 0,31.980958 0.023071288,26.548955C0.53601025,24.141974 2.935056,
+                                  23.638986 7.7840505,23.474984 8.4210129,23.453012 8.9780198,23.338998 9.4420081,
+                                  23.134957 9.9119788,22.927987 10.291006,22.660958 10.567007,22.338998 11.087027,
+                                  21.73701 11.184072,19.771008 10.733999,18.945996 10.59899,18.69801 10.426016,
+                                  18.412976 10.206045,18.096997 10.008048,17.813979 9.776969,17.519973 9.5410071,
+                                  17.215957 8.6080246,16.022964 7.5529719,14.669999 7.5529719,13.094989L7.5529719,
+                                  8.3479843C7.5529719,6.469995 8.0720139,4.7399859 9.0540686,3.3430147 10.127066,
+                                  1.8170148 12.134999,0 15.608018,0z" 
+					          Fill="{Binding ElementName=txtPersona, Path=BorderBrush}"  
+                              Height="24" Stretch="Fill" Width="24"
+                              />
+                </Canvas>
+            </Viewbox>
+        </Button>
+
+        <TextBox x:Name="txtPersona" Grid.Row="1" Grid.Column="2"
+                         materialDesign:TextFieldAssist.Hint="Persona"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         Margin="10 15 0 0"
+                         FontSize="18"
+                         >
+            <TextBox.Text>
+                <Binding Path="Persona" UpdateSourceTrigger="PropertyChanged"
+                                 ValidatesOnDataErrors="True">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+
+        </TextBox>
+
+
+        <Button Grid.Row="2" Grid.Column="1"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                        Margin="0 30 0 0">
+            <Viewbox Width="20" Height="20">
+                <Canvas Width="24" Height="24" >
+                    <Path Data="M14.991151,5.3039813L17.007218,5.3039813 17.007218,7.1449842C18.245259,
+                              7.3219848 19.347294,7.7499857 20.194323,8.6899872 20.788342,9.3489885 21.163353,
+                              10.12299 21.423363,11.008991 20.500332,11.387992 19.580302,11.765992 18.672272,
+                              12.139993 18.452265,11.716992 18.276259,11.304992 18.037251,10.933991 17.479233,
+                              10.06699 16.691206,9.6569891 15.644173,9.8399887 14.919149,9.9659891 14.35813,
+                              10.54399 14.223126,11.300992 14.090122,12.052993 14.35313,12.669994 15.082154,
+                              13.011994 16.048186,13.464995 17.053219,13.834996 18.036251,14.253997 18.527268,
+                              14.463997 19.019284,14.678998 19.488299,14.932998 21.277358,15.903999 22.063384,
+                              17.452002 21.92438,19.445005 21.736372,22.161011 20.061318,23.888014 17.359229,
+                              24.244015 17.251225,24.259014 17.144223,24.286015 17.020218,24.310015L17.020218,
+                              26.691019 15.006152,26.691019 15.006152,24.324015C12.148057,24.004013 10.603007,
+                              22.22401 10.07699,19.670006 10.586007,19.538006 11.098023,19.406006 11.61004,
+                              19.272005 12.125057,19.137005 12.639074,19.001005 13.174092,18.860004 13.249093,
+                              19.131004 13.307096,19.379005 13.387099,19.619005 13.929117,21.235008 15.727175,
+                              22.00901 17.279227,21.28101 17.975249,20.955008 18.283259,20.359007 18.311261,
+                              19.611006 18.337262,18.909004 18.052252,18.365004 17.400231,18.074003 16.659207,
+                              17.743002 15.900181,17.452002 15.150156,17.140001 14.492135,16.866001 13.817112,
+                              16.627001 13.184092,16.304001 11.344031,15.362999 10.428001,13.604996 10.660009,
+                              11.548992 10.740012,10.831991 10.950018,10.15899 11.28903,9.5189886 11.992053,
+                              8.1919861 13.13909,7.5129852 14.566137,7.2289844 14.697141,7.2029843 14.829146,
+                              7.1779847 14.991151,7.1469846z M15.990995,2C8.2840018,2 2.0089831,8.2709961 2.0000107,
+                              15.985962 1.9910082,23.700989 8.2619986,29.987 15.977994,30L16.00198,30C19.725977,
+                              30 23.232962,28.545959 25.879963,25.903015 28.531968,23.255005 29.99498,
+                              19.735962 29.999983,15.997009 30.004958,12.274963 28.547959,8.7669678 25.897969,
+                              6.1159668 23.247977,3.4660034 19.733973,2.0039673 16.004971,2z M15.990995,
+                              0L16.006985,0C20.269982,0.0039672852 24.284962,1.6740112 27.312975,4.7019653 30.340956,
+                              7.730957 32.005965,11.742981 31.999981,15.998962 31.993971,20.271973 30.322981,
+                              24.292969 27.292986,27.317993 24.268971,30.338013 20.259972,32 16.00198,32L15.973997,
+                              32C7.1559815,31.984985 -0.011004009,24.800964 1.2683692E-05,15.984009 0.010999145,
+                              7.1679688 7.1819825,0 15.990995,0z" 
+					          Fill="{Binding ElementName=txtValor, Path=BorderBrush}" 
+                              Height="24" Stretch="Fill" Width="24"
+                              />
+                </Canvas>
+            </Viewbox>
+        </Button>
+
+        <TextBox x:Name="txtValor" Grid.Row="2" Grid.Column="2"
+                         materialDesign:TextFieldAssist.Hint="Valor"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         Margin="10 25 0 0"
+                         FontSize="18"
+                         >
+            <TextBox.Text>
+                <Binding Path="Valor" UpdateSourceTrigger="PropertyChanged"
+                                 ValidatesOnDataErrors="True">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+
+        </TextBox>
+
+        <Button Grid.Row="3" Grid.Column="1" 
+                        Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                        Margin="0 30 0 0">
+            <Viewbox Width="20" Height="24">
+                <Canvas Width="24" Height="20" Margin="0 -2 0 0">
+                    <Path Data="M14.843996,22.883995L25.824013,22.883995C26.377012,22.883995 
+                              26.824013,23.330996 26.824013,23.883995 26.824013,24.436996 26.377012,
+                              24.883995 25.824013,24.883995L14.843996,24.883995C14.290995,24.883995 
+                              13.843994,24.436996 13.843994,23.883995 13.843994,23.330996 14.290995,
+                              22.883995 14.843996,22.883995z M6,22L6,26 10,26 10,22z M5,21L11,21 11,
+                              27 5,27z M15.177022,14.883996L26.156986,14.883996C26.709986,14.883996 
+                              27.156984,15.330996 27.156984,15.883996 27.156984,16.436996 26.709986,
+                              16.883995 26.156986,16.883995L15.177022,16.883995C14.624023,16.883995 
+                              14.177025,16.436996 14.177025,15.883996 14.177025,15.330996 14.624023,
+                              14.883996 15.177022,14.883996z M6,14L6,18 10,18 10,14z M5,13L11,13 11,
+                              19 5,19z M15.177022,6.8839955L26.156986,6.8839955C26.709986,6.8839955 
+                              27.156984,7.3309956 27.156984,7.8839955 27.156984,8.4369955 26.709986,
+                              8.883996 26.156986,8.883996L15.177022,8.883996C14.624023,8.883996 
+                              14.177025,8.4369955 14.177025,7.8839955 14.177025,7.3309956 14.624023,
+                              6.8839955 15.177022,6.8839955z M6,6L6,10 10,10 10,6z M5,5L11,5 11,11 5,
+                              11z M2,2L2,30 30,30 30,2z M0,0L32,0 32,32 0,32z" 
+					          Fill="{Binding ElementName=cmbConcepto, Path=BorderBrush}" 
+                              Height="24" Stretch="Fill" Width="24"
+                              />
+                </Canvas>
+            </Viewbox>
+        </Button>
+
+        <ComboBox x:Name="cmbConcepto" Grid.Row="3" Grid.Column="2"
+                          materialDesign:TextFieldAssist.Hint="Concepto"
+                          Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                          Margin="10 25 0 0"
+                          FontSize="18"
+                          ItemsSource="{Binding listCmbCategoria}"
+                          DisplayMemberPath="Nombre"
+                          SelectedValuePath="IdCategoria" 
+                          SelectedValue="{Binding Categoria}"
+                          >
+            <ComboBox.SelectedIndex>
+                <Binding Path="Selected" UpdateSourceTrigger="PropertyChanged"
+                                 ValidatesOnDataErrors="True">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </ComboBox.SelectedIndex>
+        </ComboBox>
+    </Grid>
+
+</UserControl>

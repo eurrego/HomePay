@@ -1,0 +1,272 @@
+﻿<UserControl x:Class="HomePay.Views.ViewsIngresos.ViewIngresos"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             
+             xmlns:local="clr-namespace:HomePay.Views.ViewsIngresos"
+             xmlns:materialDesign="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+             xmlns:ViewModel="clr-namespace:HomePay.ViewModels.IngresosViewModels"
+             xmlns:liveCharts="clr-namespace:LiveCharts;assembly=LiveCharts"
+             xmlns:chart="clr-namespace:De.TorstenMandelkow.MetroChart;assembly=De.TorstenMandelkow.MetroChart" 
+
+             d:DesignHeight="615"
+             d:DesignWidth="890" >
+
+    <UserControl.Resources>
+        <Storyboard x:Key="ShowMessageNotification" >
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,0,-175" 
+                                To="0,0,0,0" DecelerationRatio=".9" Duration="0:0:2" 
+                                AutoReverse="True" />
+        </Storyboard>
+    </UserControl.Resources>
+
+
+    <DockPanel Background="White" >
+
+        <Grid DockPanel.Dock="Top" VerticalAlignment="Top">
+            <StackPanel Orientation="Vertical" Background="White">
+                <DockPanel Margin="35 0 35 0">
+
+                    <TextBlock x:Name="txtTitulo" FontWeight="Light" FontSize="35"
+                               >Ingresos</TextBlock>
+
+                    <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
+
+                        <Button Margin="10 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Right" 
+                                Style="{StaticResource MaterialDesignToolButton}" >
+                            <Viewbox Width="20" Height="20">
+                                <Canvas Width="35" Height="35">
+                                    <Path Data="M15.751,0C20.636001,0,25.022001,2.2929983,27.913001,
+                                          5.881995L31.003001,3.6879971 31.502001,8.2739933 32.000001,
+                                          12.85999 27.714001,10.965991 23.527001,9.0719928 26.119,
+                                          7.177994C23.626001,4.0869966 19.838,2.1929984 15.651001,
+                                          2.1929984 8.1750011,2.0929985 2.0939999,8.2739933 2.0939999,15.849987
+                                          2.0939999,23.426981 8.1750011,29.606977 15.751,29.606977 19.240001,
+                                          29.606977 22.430001,28.311976 24.823,26.11798 24.823001,
+                                          26.11798 26.916001,26.018979 25.919001,27.912978L25.919001,
+                                          28.011977C23.228001,30.404975 19.639001,31.800975 15.751,
+                                          31.800975 7.078001,31.800975 0,24.622981 0,15.849987 0,7.0779943
+                                          7.078001,0 15.751,0z" Fill="Black" />
+                                </Canvas>
+                            </Viewbox>
+                        </Button>
+
+                        <Button Margin="10 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Right" 
+                                Style="{StaticResource MaterialDesignToolButton}"
+                                Command="{Binding RunDialogAddIngreso}">
+                            <Viewbox Width="20" Height="20">
+                                <Canvas Width="35" Height="35">
+                                    <Path Data="M15,0L17,0 17,15.000008 32,15.000008 32,17.000008 17,
+                                          17.000008 17,32 15,32 15,17.000008 0,17.000008 0,15.000008 
+                                          15,15.000008z" Fill="Black" />
+                                </Canvas>
+                            </Viewbox>
+                        </Button>
+
+                    </StackPanel>
+                </DockPanel>
+                <DockPanel Margin="35 0 35 0" >
+
+                    <TextBlock FontWeight="ExtraLight" FontSize="20" VerticalAlignment="Center" Padding="0 0 0 20">Mes</TextBlock>
+                    <TextBlock x:Name="txtMesValue" Visibility="Collapsed" Text="{Binding MesValue, Mode=TwoWay}"/>
+
+                    <Button x:Name="btnMes" Style="{StaticResource MaterialDesignToolButton}" Margin="5 0 0 0" 
+                            FontWeight="Light" FontSize="20" Content="{Binding Mes, Mode=TwoWay}" Height="48"
+                            Foreground="DeepSkyBlue" Padding="0 0 0 20"
+                            Command="{Binding RunDialogSelectedMonth}"
+                            />
+
+                    <DockPanel DockPanel.Dock="Right" FlowDirection="RightToLeft" >
+
+                        <Button Style="{StaticResource MaterialDesignToolButton}" Margin="0 0 6 0" 
+                                FontWeight="Light" FontSize="20" Content="2016" Height="48" 
+                                Foreground="DeepSkyBlue" Padding="0 0 0 20"/>
+
+                        <TextBlock FontWeight="ExtraLight" VerticalAlignment="Center" FontSize="20" Padding="0 0 0 20" >Año</TextBlock>
+
+                    </DockPanel>
+                </DockPanel>
+            </StackPanel>
+        </Grid>
+
+
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+            <StackPanel Orientation="Vertical" Height="441" Width="345">
+
+                <StackPanel Margin="35 0 0 0" Orientation="Vertical" Width="310" Height="300" Background="White">
+
+                    <ItemsControl x:Name="ItemsIngresos" ItemsSource="{Binding Items}" 
+                                  Grid.IsSharedSizeScope="True" Margin="0 0 0 0">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="{x:Type ViewModel:SelectableItemsViewModel}">
+                                <Border x:Name="Border" Padding="5" BorderThickness="0 0 0 1" 
+                                    BorderBrush="{DynamicResource MaterialDesignDivider}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition SharedSizeGroup="Checkerz" />
+                                            <ColumnDefinition Width="100"/>
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+
+                                        <ToggleButton VerticalAlignment="Center" IsChecked="{Binding IsSelected}"
+                                                  Style="{StaticResource MaterialDesignActionAccentToggleButton}">
+                                            <Viewbox Width="20" Height="20">
+                                                <Canvas Width="32" Height="32">
+                                                    <Path Data="M0.99999976,9.9999924L3.0000002,9.9999924 3.0000002,31.999992 0.99999976,
+                                                  31.999992z M2,0C3.1049805,0 4,0.89498901 4,2 4,3.1049805 3.1049805,
+                                                  4 2,4 0.89501953,4 -1.1368684E-13,3.1049805 0,2 -1.1368684E-13,
+                                                  0.89498901 0.89501953,0 2,0z" Fill="Black" Canvas.Left="14"/>
+                                                </Canvas>
+                                            </Viewbox>
+                                        </ToggleButton>
+
+                                        <StackPanel Margin="8 0 0 0" Grid.Column="1">
+
+                                            <TextBlock FontWeight="Bold" Text="{Binding Fecha, ConverterCulture='es-ES', StringFormat={} {0:dd MMMM}}" />
+
+                                            <TextBlock Margin="2 0 0 0" Text="{Binding Valor, ConverterCulture='en-US', StringFormat={}{0:c}}" />
+
+                                        </StackPanel>
+                                        <StackPanel Margin="2 0 0 0" Grid.Column="2" >
+
+                                            <TextBlock FontWeight="Bold" Text="{Binding Nombre}" />
+
+                                            <TextBlock Margin="2 0 0 0" Text="{Binding Persona}" />
+
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+
+                                <DataTemplate.Triggers>
+                                    <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                        <Setter TargetName="Border" Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
+                                    </DataTrigger>
+                                </DataTemplate.Triggers>
+
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+
+                <StackPanel Margin="35 0 0 0" Orientation="Vertical" Width="310" Height="140" Background="White">
+                    <Grid Height="130" Grid.Column="1" Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Margin="0 25 8 0" Orientation="Horizontal" >
+
+                            <TextBlock Foreground="LightSkyBlue" FontWeight="Normal" FontSize="20" Margin="10 0 0 0">TOTAL</TextBlock>
+
+                        </StackPanel>
+                        <DockPanel Grid.Row="1">
+
+                            <TextBlock  FontWeight="Light" Text ="{Binding Total, ConverterCulture='en-US', StringFormat={}{0:c}}" 
+                                    Style="{StaticResource MaterialDesignDisplay2TextBlock}" />
+
+                        </DockPanel>
+                    </Grid>
+                </StackPanel>
+
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Height="441" Width="510" >
+
+                <Grid Margin="0 0 0 0" Background="White" Height="210">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"></ColumnDefinition>
+                        <ColumnDefinition Width="480"></ColumnDefinition>
+
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="190"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Column="1" Grid.Row="0" FontWeight="Light" 
+                               FontSize="15" Margin="10 0 0 0" >Ingresos por MES</TextBlock>
+
+                    <liveCharts:BarChart Name="Chart" Grid.Column="1" Grid.Row="1" >
+                        <liveCharts:BarChart.Series>
+                            <liveCharts:SeriesCollection>
+
+                                <liveCharts:BarSeries Title="Total" PrimaryValues="{Binding IngresosMes}" Stroke="Orange">
+                                    <liveCharts:BarSeries.Fill>
+                                        <SolidColorBrush Color="Orange"/>
+                                    </liveCharts:BarSeries.Fill>
+                                </liveCharts:BarSeries>
+
+                            </liveCharts:SeriesCollection>
+                        </liveCharts:BarChart.Series>
+
+                        <liveCharts:BarChart.PrimaryAxis>
+                            <liveCharts:Axis  PrintLabels="False"/>
+                        </liveCharts:BarChart.PrimaryAxis>
+
+                        <liveCharts:BarChart.SecondaryAxis>
+                            <liveCharts:Axis IsEnabled="False"  Labels="Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic" Margin="  0 0 " >
+                                <liveCharts:Axis.Separator>
+                                    <liveCharts:Separator IsEnabled="False"></liveCharts:Separator>
+                                </liveCharts:Axis.Separator>
+                            </liveCharts:Axis>
+                        </liveCharts:BarChart.SecondaryAxis>
+
+                    </liveCharts:BarChart>
+                </Grid>
+
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 0"  Background="White" Height="231">
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" Padding="0"  VerticalScrollBarVisibility="Disabled">
+                        <chart:RadialGaugeChart x:Name="gauge" ChartTitleVisibility="Collapsed"
+                                                    ChartLegendVisibility="Collapsed"  
+                                                    ScrollViewer.HorizontalScrollBarVisibility="Visible" 
+                                                    Padding="0" 
+                                                    Width="490" 
+                                                    Margin="25 0 0 0">
+                            <chart:RadialGaugeChart.Series>
+                                <chart:ChartSeries
+                                              SeriesTitle="Ingresos por Persona"
+                                              DisplayMember="Nombre"
+                                              ValueMember="Porcentaje"
+                                              ItemsSource="{Binding Porcentaje}">
+                                </chart:ChartSeries>
+                            </chart:RadialGaugeChart.Series>
+                        </chart:RadialGaugeChart>
+                    </ScrollViewer>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel DockPanel.Dock="Top">
+
+            <StackPanel  Name="messageNotification"
+                        Orientation="Vertical" Width="890" 
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Bottom" 
+                        Margin="0,0,0,-175">
+
+                <Border BorderBrush="#FF37474F" BorderThickness="1" Height="100" Background="#FF37474F" >
+                    <StackPanel Orientation="Horizontal" Margin="45 0 0 0">
+                        <StackPanel Margin="0 -30 0 0" Height="60" >
+                            <Button Style="{StaticResource MaterialDesignToolButton}" Height="70">
+                                <Viewbox Width="40" Height="40">
+                                    <Canvas Width="40" Height="40">
+                                        <Path  Data="{Binding Imagen}" 
+                                               Fill="{Binding Color}" Height="40" 
+                                               Stretch="Fill" Width="40"/>
+                                    </Canvas>
+                                </Viewbox>
+                            </Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="0 10 0 0">
+                            <TextBlock  Style="{StaticResource MaterialDesignTitleTextBlock}" Margin="10 10 0 0" Foreground="White" FontWeight="Light" Text="{Binding Titulo}"/>
+                            <TextBlock  Style="{StaticResource MaterialDesignSubheadingTextBlock}" Margin="10 0 0 0" Foreground="White" FontWeight="ExtraLight" Text="{Binding Mensaje}" />
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
+        </StackPanel>
+    </DockPanel>
+</UserControl>
